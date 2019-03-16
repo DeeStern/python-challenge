@@ -9,10 +9,6 @@ import numpy as np
 #import csv file
 import csv
 
-#open text file
-f = open("pybankcopy.txt", "w+")
-if f.mode == 'w':
-    contents = f.write()
 
 #Set path for file
 csvpath = os.path.join('..', 'Pybank', 'budget_data.csv')
@@ -52,17 +48,21 @@ with open(csvpath, newline="") as csvfile:
     minprofit = min(change)
     index_minprofit = np.nanargmin(change)
 
-#print everything out
-print("Financial Analysis")
-print("-----------------------------------")
-print (f"Total Months: {monthscount}")
-print (f"Total: ${net}")
-print(f"Average Change: ${avgchange}")
 
-#index of maxprofit is 24; index of minprofit is 43. Plug in index
-#positions of months for maxprofit and minprofit (+1)
-print (f"Greatest Increase in Profits: {months[25]} $({maxprofit})")
-print (f"Greatest Decrease in Profits: {months[44]} $({minprofit})")
+#build the output summary
+output =(
 
-   #print to text file
-f.close()
+f"Financial Analysis\n"
+f"------------------------\n"
+f"Total Months: {monthscount}\n"
+f"Total: ${net}\n"
+f"Average Change: ${avgchange}\n"
+f"Greatest Increast in Profits: {months[25]} ${maxprofit}\n"
+f"Greatest Decrease in Profits: {months[44]} ${minprofit}\n"
+)
+print(output)
+
+with open("pybank.txt", 'w') as txt_file:
+    txt_file.write(output)
+
+

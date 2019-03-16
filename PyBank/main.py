@@ -1,9 +1,18 @@
+#Devin Stern
+#Homework 3
+#Data Analytics and Visualization Cohort 3
+
 #Import Dependencies
 import os
 import numpy as np
 
 #import csv file
 import csv
+
+#open text file
+f = open("pybankcopy.txt", "w+")
+if f.mode == 'w':
+    contents = f.write()
 
 #Set path for file
 csvpath = os.path.join('..', 'Pybank', 'budget_data.csv')
@@ -43,12 +52,9 @@ with open(csvpath, newline="") as csvfile:
     minprofit = min(change)
     index_minprofit = np.nanargmin(change)
 
-
 #print everything out
 print("Financial Analysis")
-
 print("-----------------------------------")
-
 print (f"Total Months: {monthscount}")
 print (f"Total: ${net}")
 print(f"Average Change: ${avgchange}")
@@ -58,5 +64,5 @@ print(f"Average Change: ${avgchange}")
 print (f"Greatest Increase in Profits: {months[25]} $({maxprofit})")
 print (f"Greatest Decrease in Profits: {months[44]} $({minprofit})")
 
-#Export to text file
-
+   #print to text file
+f.close()
